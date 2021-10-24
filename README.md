@@ -12,8 +12,7 @@
 
 
 ## Project Overview
-(Menyertakan hasil riset atau referensi yang terkait.)
-Project Overview ini akan membahas bidang ekonomi dan bisnis dengan judul **"Prediksi Keputusan Pelanggan Dalam Pembelian Asuransi Perjalanan"**.
+Proyek *machine learning* ini akan mengangkat judul **"Sistem Rekomendasi Buku dengan Content Based Filtering dan Collaborative Filtering"**.
 
 ![banner](../main/images/banner.png "banner")
 
