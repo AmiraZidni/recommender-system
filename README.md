@@ -12,15 +12,16 @@
 
 
 ## Project Overview
-Proyek *machine learning* ini akan mengangkat judul **"Sistem Rekomendasi Buku dengan Content Based Filtering dan Collaborative Filtering"**.
+Proyek *machine learning* ini akan membahas tentang **"Sistem Rekomendasi Buku dengan Content Based Filtering dan Collaborative Filtering"**.
 
 ![banner](../main/images/banner.png "banner")
 
-Latar belakang proyek ini adalah diperlukannya pemetaan pelanggan yang memiliki kemungkinan untuk membeli asuransi perjalanan. Asuransi perjalanan memungkinkan orang bepergian mendapatkan perlindungan selama melakukan perjalanan dari kejadian tidak terduga seperti sakit, keterlambatan pesawat, atau hal tidak terduga yang mungkin terjadi dengan rumah yang ditinggal [[1]](https://kc.umn.ac.id/13580/).
+Membaca buku adalah salah satu kegiatan yang belum banyak peminatnya di Indonesia. Padahal membaca adalah jendela ilmu dan salah satu segmen pasar awal e-commerce Amazon pada awalnya adalah pasar buku sebelum akhirnya meluaskan target pasar ke segmen lainnya. Dalam e-commerce Amazon, tentunya terdapat sistem rekomendasi yang membantu pengunjung mencari buku agar pengunjung website tersebut membuat keputusan akhir yaitu membelinya [[1]](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.23.9764&rep=rep1&type=pdf). Sistem rekomendasi buku juga dapat membantu pembaca buku mengetahui informasi buku-buku yang akan dibaca selanjutnya sesuai dengan preferensi pengguna dari rekam jejak buku yang telah dibaca sebelumnya. Terjadi keuntungan dua pihak karena konsumen mendapatkan informasi yang diperlukan untuk membuat suatu keputusan sementara dari pemilik bisnis juga mendapatkan profit dari penjualan. Hal ini menjadikan sistem rekomendasi telah digunakan secara luas oleh hampir semua area bisnis. [[2]](https://ejournal.akprind.ac.id/index.php/technoscientia/article/view/612).
 
-Hasil proyek ini adalah sebuah *machine learning* yang dapat digunakan sebagai pendukung pembuatan keputusan sebuah perusahaan asuransi perjalanan dalam menyasar pelanggannya mengingat kemungkinan bidang bisnis ini akan diprediksi kembali naik setelah hampir punah selama pandemi [[2]](https://www.tandfonline.com/doi/full/10.1080/02513625.2020.1794120). Seiring pemulihan penerbangan, jasa asuransi perjalanan ini dapat menjadi produk menarik tersendiri bagi orang bepergian mengingat risiko pandemi yang membutuhkan waktu untuk kembali normal. 
+Pada proyek machine learning ini, sistem rekomendasi yang akan dibuat memiliki fokus pada sistem rekomendasi buku karena di Indonesia sendiri masih diperlukan sebuah sistem yang dapat membantu merekomendasikan para pembaca agar lebih mudah mendapatkan informasi buku-buku yang akan dibaca selanjutnya. Hal ini didasarkan pada hasil survey kemampuan membaca oleh PISA tahun 2018 yang menghasilkan nilai skor membaca pelajar Indonesia yang masih sangat rendah [[3]](https://www.oecd.org/education/pisa-2018-results-volume-i-5f07c754-en.htm).
 
 ## Business Understanding
+!!!
 (Mengajukan dua atau lebih solution approach. Misalnya, menggunakan dua (atau lebih) algoritma sistem rekomendasi untuk mencapai solusi yang diinginkan.)
 Bepergian adalah salah satu aktifitas mengunjungi tempat lain dengan tujuan tertentu. Mobilitas melewati udara atau penerbangan sudah menjadi hal yang biasa dan semakin  dijangkau masyarakat luas dalam beberapa dekade terakhir. Bepergian tidak lepas dari risiko yang dapat mengganggu kenyamanan selama perjalanan hingga kembali ke tempat asal. Risiko ini menjadi peluang bagi asuransi bepergian untuk menawarkan jasa perlindungan dari hal-hal yang tidak terduga seperti kemungkinan sakit, hilang passport, keterlambatan pesawat, atau risiko dengan rumah yang ditinggalkan. Perusahaan asuransi bepergian tentu memerlukan strategi untuk memasarkan jasanya dengan tepat sasaran sehingga biaya promosi atau *marketing* dapat menjadi lebih efisien. Untuk memenuhi keperluan tersebut, proyek ini akan membuat sebuah model *machine learning* dengan kemampuan klasifikasi pelanggan dalam pembelian asuransi.
 
@@ -114,10 +115,11 @@ Seluruh evaluasi matriks ini dapat digunakan dengan mudah menggunakan *library* 
 
 
 ## References
-[[1]](https://kc.umn.ac.id/13580/) Astarie M. Setiawan, Yolanda (2020) *Perancangan Kampanye Sosial Penggunaan Asuransi Perjalanan Wisata*. Bachelor Thesis thesis, Universitas Multimedia Nusantara. [https://kc.umn.ac.id/13580/](https://kc.umn.ac.id/13580/)
+[[1]](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.23.9764&rep=rep1&type=pdf) Swearingen, K. dan Sinha, R., 2001, September. Beyond algorithms: An HCI perspective on recommender systems. In*ACM SIGIR 2001 workshop on recommender systems* (Vol. 13, No. 5-6, pp. 1-11). [http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.23.9764&rep=rep1&type=pdf](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.23.9764&rep=rep1&type=pdf)
 
-[[2]](https://www.tandfonline.com/doi/full/10.1080/02513625.2020.1794120) Klaus R. Kunzmann (2020) Smart Cities After Covid-19: Ten Narratives, *disP - The Planning Review*, 56:2, 20-31, DOI: 10.1080/02513625.2020.1794120. [https://www.tandfonline.com/doi/full/10.1080/02513625.2020.1794120](https://www.tandfonline.com/doi/full/10.1080/02513625.2020.1794120)
+[[2]](https://ejournal.akprind.ac.id/index.php/technoscientia/article/view/612) Irfan, M. dan Cahyani, A.D., 2014. Sistem Rekomendasi: Buku Online Dengan Metode Collaborative Filtering. *Jurnal Teknologi Technoscientia*, pp.076-84. [https://ejournal.akprind.ac.id/index.php/technoscientia/article/view/612](https://ejournal.akprind.ac.id/index.php/technoscientia/article/view/612)
 
-[[3]](https://www.academia.edu/download/37219940/5215ijdkp01.pdf) Hossin, Mohammad, and Md Nasir Sulaiman. "A review on evaluation metrics for data classification evaluations." *International journal of data mining & knowledge management process* 5.2 (2015): 1. [https://www.academia.edu/download/37219940/5215ijdkp01.pdf](https://www.academia.edu/download/37219940/5215ijdkp01.pdf)
+[[3]](https://www.oecd.org/education/pisa-2018-results-volume-i-5f07c754-en.htm) OECD. (2019). *PISA 2018 results (volume I): what students know and can do.* PISA:
+OECD Publishing. [https://www.oecd.org/education/pisa-2018-results-volume-i-5f07c754-en.htm](https://www.oecd.org/education/pisa-2018-results-volume-i-5f07c754-en.htm)
 
 **---Ini adalah bagian akhir laporan---**
