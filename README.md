@@ -46,22 +46,34 @@ Pendekatan solusi untuk mencapai *Goals* di atas dapat dijabarkan dalam langkah-
     Data diunduh dari Kaggle dengan tautan berikut [Book Recommendation Dataset](https://www.kaggle.com/arashnic/book-recommendation-dataset).
 2. Melakukan pra-pemrosesan data.
 
-    Pra-pemrosesan data pada proyek ini adalah:
-      - **Pengolahan kolom fitur** dengan memilah serta memilih kolom yang memiliki korelasi tinggi dengan kolom target.
-      - **Pembagian dataset** dengan data latih 80% dan data uji 20%.
-      - **Standarisasi data** dengan mengubah skala data menjadi relatif sama atau mendekati distribusi normal. 
+    Pra-pemrosesan data diperlukan agar data yang akan diumpankan pada model *machine learning* tidak memiliki bias atau mengalami kegagalan memprediksi rekomendasi. Pra-pemrosesan data pada proyek ini adalah:
+      - **Mengganti nama kolom** dengan nama yang bisa digunakan dalam pengolahan lanjutan yakni mengubah strip (-) dengan garis bawah (_).
+      - **Memperbaiki nilai** dari baris yang terdapat kesalahan ketik atau nilai abnormal.
+      - **Menghapus kolom yang tidak diperlukan** seperti kolom gambar.
+      - **Menghapus baris** yang memiliki nilai kosong.
 3. Melakukan persiapan data.
-4. Membangun sistem rekomendasi.
-5. Melakukan evaluasi hasil sistem rekomendasi.
 
-Sampaikan solusi yang Anda ajukan untuk menyelesaikan permasalahan di sini. Misalnya, Anda mengajukan dua algoritma sistem rekomendasi sebagai solusi permasalahan, yaitu Content Based Filtering dan Collaborative Filtering. Jelaskan secara singkat mengenai kedua algoritma ini. 
-Sebagai contoh:
-- **Content Based Filtering**. Kalimat selanjutnya menjelaskan informasi atau cara kerja algoritma ini. Selain itu, dapat juga Anda tambahkan kelebihan dan kekurangan algoritma ini.
-- **Collaborative Filtering**. Sama dengan di atas.
-Menentukan sistem rekomendasi buku. Pra-pemrosesan adalah pengolahan data mentah yang bertujuan mengurangi kemungkinan model menjadi bias atau bahkan gagal mencapai akurasi yang diinginkan. 
-8. Pembuatan model. Pembuatan model adalah menentukan model yang tepat untuk dilatih menggunakan data yang telah melewati pra-pemrosesan agar dapat memprediksi hasil sesuai tujuan proyek ini. Pembuatan model pada proyek ini menggunakan dua model yang selanjutnya model *baseline* ini akan dilakukan pengembangan untuk meningkatkan performa. Dua model tersebut adalah:
-- **KNN**. KNN adalah algoritma yang menggunakan kesamaan fitur untuk memprediksi nilai baru. Nilai baru ini didasarkan pada seberapa mirip dengan tetangganya sejumlah k, oleh karena itu disebut K-Nearest Neighbor.
-- **Gradient Boosting Algorithm**. Algoritma ini bekerja dengan meningkatkan (*boosting*) model yang dianggap memiliki performa rendah atau akurasi yang belum memuaskan.
+    Persiapan data pada proyek ini dilakukan untuk mempersiapkan data sebelum digunakan untuk melatih model sistem rekomendasi. Persiapan data diantaranya adalah:
+      - **Menggabungkan data** berdasarkan nilai kolom kunci.
+      - **Menghapus baris** yang tidak memiliki nilai setelah digabungkan.
+      - **Mengelompokkan dan mengurutkan data** berdasarkan rating.
+      - **Mengambil sampel data** karena data ini terlalu besar dan menghabiskan banyak sumber daya RAM yang dapat menghasilkan *notebook crash* pada Google Colab proyek ini.
+4. Membangun sistem rekomendasi.
+
+    Sistem rekomendasi yang diajukan untuk menyelesaikan permasalahan ini adalah penggunaan dua algoritma *Content Based Filtering* dan *Collaborative Filtering*.
+    - **Content Based Filtering**. Dalam konteks penelitian ini dan berdasarkan sumber [[2]](https://ejournal.akprind.ac.id/index.php/technoscientia/article/view/612), metode *Content Based Filtering* bekerja dengan mencari kedekatan suatu buku yang akan direkomendasikan dengan buku yang telah diambil oleh pembaca berdasarkan kemiripan antar isinya.
+        - Kelebihan:
+            - Hasil rekomendasi didasarkan pada preferensi di dalam buku.
+            - Sederhana dan transparan karena mudah dipahami bagaimana algoritma ini bekerja.
+        - Kelemahan:
+            - Pembaca buku tidak mendapatkan rekomendasi dari jenis buku yang berbeda.
+    - **Collaborative Filtering**. Algoritma ini bekerja dengan membandingkan preferensi pengguna lain yang telah menilai sebuah buku.
+        - Kelebihan:
+            - Informasi tentang preferensi dapat ditambahkan secara mudah.
+            - Adanya rekam jejak preferensi memudahkan sistem rekomendasi bekerja lebih baik.
+        - Kelemahan:
+            - Kurang efektif terhadap pengguna yang belum memiliki data karena tidak terdapat informasi yang cukup.
+5. Melakukan evaluasi hasil sistem rekomendasi.
 
 ## Data Understanding
 Paragraf awal bagian ini menjelaskan informasi mengenai data yang Anda gunakan dalam proyek. Sertakan juga sumber atau tautan untuk mengunduh dataset. Contoh: [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Restaurant+%26+consumer+data).
