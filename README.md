@@ -6,7 +6,7 @@
 - [Business Understanding](#business-understanding)
 - [Data Understanding](#data-understanding)
 - [Data Preparation](#data-preparation)
-- [Modelling](#modelling)
+- [Modeling](#modeling)
 - [Evaluation](#evaluation)
 - [References](#references)
 
@@ -43,7 +43,7 @@ Sebagai contoh:
 - **Content Based Filtering**. Kalimat selanjutnya menjelaskan informasi atau cara kerja algoritma ini. Selain itu, dapat juga Anda tambahkan kelebihan dan kekurangan algoritma ini.
 - **Collaborative Filtering**. Sama dengan di atas.
 
-Solusi dari *Problem Statements* di atas agar dapat mencapai *Goals* yang telah ditetapkan adalah menentukan sistem rekomendasi yang tepat untuk kasus ini dan membuat model yang dapat diterangkan sebagai berikut:
+Solusi dari *Problem Statements* di atas agar dapat mencapai *Goals* yang telah ditetapkan adalah menentukan sistem rekomendasi yang tepat dan membuat model yang dapat diterangkan untuk kasus ini. 
 1. Menentukan sistem rekomendasi buku. Pra-pemrosesan adalah pengolahan data mentah yang bertujuan mengurangi kemungkinan model menjadi bias atau bahkan gagal mencapai akurasi yang diinginkan. Pra-pemrosesan data pada proyek ini dilakukan dengan langkah-langkah berikut:
 - **Pengolahan kolom fitur** dengan memilah serta memilih kolom yang memiliki korelasi tinggi dengan kolom target.
 - **Pembagian dataset** dengan data latih 80% dan data uji 20%.
