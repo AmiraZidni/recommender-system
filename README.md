@@ -37,9 +37,14 @@ Tujuan proyek yang ingin dicapai adalah:
 2. Membuat sistem rekomendasi buku bagi pembaca buku.
 
 !!!
-### Solution statements
-Solusi dari *Problem Statements* di atas agar dapat mencapai *Goals* yang telah ditetapkan adalah menerapkan pra-pemrosesan data dan pembuatan model yang dapat diterangkan sebagai berikut:
-1. Pra-pemrosesan data. Pra-pemrosesan adalah pengolahan data mentah yang bertujuan mengurangi kemungkinan model menjadi bias atau bahkan gagal mencapai akurasi yang diinginkan. Pra-pemrosesan data pada proyek ini dilakukan dengan langkah-langkah berikut:
+### Solution Approach
+Sampaikan solusi yang Anda ajukan untuk menyelesaikan permasalahan di sini. Misalnya, Anda mengajukan dua algoritma sistem rekomendasi sebagai solusi permasalahan, yaitu Content Based Filtering dan Collaborative Filtering. Jelaskan secara singkat mengenai kedua algoritma ini. 
+Sebagai contoh:
+- **Content Based Filtering**. Kalimat selanjutnya menjelaskan informasi atau cara kerja algoritma ini. Selain itu, dapat juga Anda tambahkan kelebihan dan kekurangan algoritma ini.
+- **Collaborative Filtering**. Sama dengan di atas.
+
+Solusi dari *Problem Statements* di atas agar dapat mencapai *Goals* yang telah ditetapkan adalah menentukan sistem rekomendasi yang tepat untuk kasus ini dan membuat model yang dapat diterangkan sebagai berikut:
+1. Menentukan sistem rekomendasi buku. Pra-pemrosesan adalah pengolahan data mentah yang bertujuan mengurangi kemungkinan model menjadi bias atau bahkan gagal mencapai akurasi yang diinginkan. Pra-pemrosesan data pada proyek ini dilakukan dengan langkah-langkah berikut:
 - **Pengolahan kolom fitur** dengan memilah serta memilih kolom yang memiliki korelasi tinggi dengan kolom target.
 - **Pembagian dataset** dengan data latih 80% dan data uji 20%.
 - **Standarisasi data** dengan mengubah skala data menjadi relatif sama atau mendekati distribusi normal. 
@@ -48,6 +53,14 @@ Solusi dari *Problem Statements* di atas agar dapat mencapai *Goals* yang telah 
 - **Gradient Boosting Algorithm**. Algoritma ini bekerja dengan meningkatkan (*boosting*) model yang dianggap memiliki performa rendah atau akurasi yang belum memuaskan.
 
 ## Data Understanding
+Paragraf awal bagian ini menjelaskan informasi mengenai data yang Anda gunakan dalam proyek. Sertakan juga sumber atau tautan untuk mengunduh dataset. Contoh: [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Restaurant+%26+consumer+data).
+Selanjutnya, uraikanlah seluruh variabel atau fitur pada data. Sebagai contoh:  
+
+Variabel-variabel pada Restaurant UCI dataset adalah sebagai berikut:
+- accepts : merupakan jenis pembayaran yang diterima pada restoran tertentu.
+- cuisine : merupakan jenis masakan yang disajikan pada restoran.
+- dst
+
 (Melakukan beberapa tahapan yang diperlukan mengenai data, contohnya teknik visualisasi data atau exploratory data analysis.)
 Dataset proyek ini berasal dari platform Kaggle yang dipublikasi oleh TejasTheBard dengan judul [Travel Insurance Prediction Data](https://www.kaggle.com/tejashvi14/travel-insurance-prediction-data). Berdasarkan metadata, dataset ini bersumber basis data perusahaan perjalanan di India. Dari dataset TravelInsurancePrediction.csv yang diunduh, dataset memiliki 10 kolom dengan keterangan berikut:
 
@@ -65,13 +78,24 @@ Dataset proyek ini berasal dari platform Kaggle yang dipublikasi oleh TejasTheBa
 | TravelInsurance     | Status pelanggan membeli paket asuransi.                                                              |
 
 ## Data Preparation
+Pada bagian ini Anda menjelaskan teknik yang digunakan pada tahapan Data Preparation. 
+- Terapkan minimal satu teknik data preparation dan jelaskan proses yang dilakukan.
+- Jelaskan juga alasan mengapa Anda perlu menerapkan teknik tersebut pada tahap Data Preparation. 
+
 (Menerapkan dua atau lebih teknik yang diperlukan dalam tahapan data preparation.)
 Tahap persiapan data atau pra-pemrosesan data dilakukan dengan langkah-langkah berikut:
 - **Resample dataset** dengan menyeimbangkan jumlah data. Resample dataset diperlukan untuk menghindari hasil prediksi yang bias dikarenakan kuantitas yang tidak seimbang dalam sebuah data.
 - **Pembagian dataset** dengan data latih 80% dan data uji 20%. Pembagian dataset tentunya diperlukan agar model yang telah dilatih dapat diujikan seberapa akurat hasil prediksinya terhadap data baru. Dalam dataset ini rasio 80:20 dapat dikatakan masih ideal karena jumlahnya masih ribuan saja (1987 baris).
 - **Standarisasi data** dengan mengubah skala data menjadi relatif sama atau mendekati distribusi normal. Tahap standarisasi digunakan untuk menyeragamkan fitur numerik dalam skala data yang sama dan dapat lebih mudah diolah saat pelatihan model.
 
-## Modeling and Result
+## Modeling
+Tahapan ini membahas mengenai **pembuatan model sistem rekomendasi** untuk menyelesaikan permasalahan dan **menyajikan top-N recommendation sebagai solusi.**
+
+Untuk menjelaskan mengenai bagian ini, Anda dapat mengikuti panduan: 
+- Jelaskan bagaimana Anda melakukan proses modeling dalam proyek. 
+- Sajikan top-N recommendation sebagai output model Anda.
+- Jelaskan pula hasil rekomendasi dari model Anda.
+
 (Menyajikan dua solusi rekomendasi dengan algoritma yang berbeda.)
 Seperti yang telah dituliskan dalam *solution statement*, model machine learning yang digunakan untuk menyelesaikan permasalahan dalam proyek ini adalah KNN dan Gradient Boosting.
 
@@ -87,6 +111,11 @@ Hasil pelatihan dan pengujian model dapat dilihat sebagai berikut:
 Dari hasil seluruh model yang dibuat, model Gradient Boosting yang dikembangkan memiliki nilai terbaik dan oleh karena itu model ini yang akan digunakan pada tahap selanjutnya.
 
 ## Evaluation
+Bagian ini menjelaskan mengenai metrik evaluasi yang digunakan untuk mengukur kinerja model.  Penjelasannya meliputi (namun tidak terbatas pada) beberapa hal berikut:
+- Penjelasan mengenai metrik yang digunakan dan bagaimana formulanya
+- Kelebihan dan kekurangan metrik
+- Bagaimana cara menerapkannya ke dalam kode.
+
 (Menjelaskan metrik evaluasi yang digunakan untuk mengukur kinerja model (formula dan cara metrik tersebut bekerja).)
 Sebagai evaluasi, proyek klasifikasi akan menggunakan metrik *accuration*, *precision*, *recall*, dan *F1 score*. Kita juga akan melihat hasil *confusion matrix* dari prediksi model sebelum membahas empat metrik sebelumnya untuk lebih memberikan gambaran hasil evaluasi.
 - *Confusion matrix* adalah matriks yang berisi 4 notasi tp, tn, fp, fn. Notasi tp (true positive) dan tn (true negative) menunjukkan jumlah nilai positif dan negatif yang diprediksi secara tepat. Sedangkan notasi fp (false positive) dan fn (false negative) menunjukkan jumlah nilai positif dan negatif yang diprediksi salah. Kelebihan matriks ini adalah paling sederhana untuk dipahami dan kekurangannya adalah tidak cukup informatif untuk mengukur hasil sehingga perlu diolah kembali [[3]](https://www.academia.edu/download/37219940/5215ijdkp01.pdf).
