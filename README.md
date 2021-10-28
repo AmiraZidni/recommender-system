@@ -6,7 +6,7 @@
 - [Business Understanding](#business-understanding)
 - [Data Understanding](#data-understanding)
 - [Data Preparation](#data-preparation)
-- [Modeling and Result](#modeling-and-result)
+- [Modelling](#modelling)
 - [Evaluation](#evaluation)
 - [References](#references)
 
