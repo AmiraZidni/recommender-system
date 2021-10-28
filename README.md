@@ -44,7 +44,7 @@ Pendekatan solusi untuk mencapai *Goals* di atas dapat dijabarkan dalam langkah-
     Data diunduh dari Kaggle dengan tautan berikut [Book Recommendation Dataset](https://www.kaggle.com/arashnic/book-recommendation-dataset).
 2. Melakukan pra-pemrosesan data.
 
-    Pra-pemrosesan data pada proyek ini dilakukan dengan langkah-langkah berikut:
+    Pra-pemrosesan data pada proyek ini adalah:
       - **Pengolahan kolom fitur** dengan memilah serta memilih kolom yang memiliki korelasi tinggi dengan kolom target.
       - **Pembagian dataset** dengan data latih 80% dan data uji 20%.
       - **Standarisasi data** dengan mengubah skala data menjadi relatif sama atau mendekati distribusi normal. 
