@@ -16,26 +16,28 @@ Proyek *machine learning* ini akan membahas tentang **"Sistem Rekomendasi Buku d
 
 ![banner](../main/images/banner.png "banner")
 
-Membaca buku adalah salah satu kegiatan yang belum banyak peminatnya di Indonesia. Padahal membaca adalah jendela ilmu dan salah satu segmen pasar awal e-commerce Amazon pada awalnya adalah pasar buku sebelum akhirnya meluaskan target pasar ke segmen lainnya. Dalam e-commerce Amazon, tentunya terdapat sistem rekomendasi yang membantu pengunjung mencari buku agar pengunjung website tersebut membuat keputusan akhir yaitu membelinya [[1]](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.23.9764&rep=rep1&type=pdf). Sistem rekomendasi buku juga dapat membantu pembaca buku mengetahui informasi buku-buku yang akan dibaca selanjutnya sesuai dengan preferensi pengguna dari rekam jejak buku yang telah dibaca sebelumnya. Terjadi keuntungan dua pihak karena konsumen mendapatkan informasi yang diperlukan untuk membuat suatu keputusan sementara dari pemilik bisnis juga mendapatkan profit dari penjualan. Hal ini menjadikan sistem rekomendasi telah digunakan secara luas oleh hampir semua area bisnis. [[2]](https://ejournal.akprind.ac.id/index.php/technoscientia/article/view/612).
+Membaca buku adalah salah satu kegiatan yang belum banyak peminatnya di Indonesia. Padahal membaca adalah jendela ilmu. Bahkan salah satu segmen pasar awal e-commerce Amazon adalah pasar buku sebelum akhirnya meluaskan target pasar ke segmen lainnya. Dalam e-commerce Amazon, tentunya terdapat sistem rekomendasi yang membantu pengunjung mencari buku agar pengunjung website tersebut membuat keputusan akhir yaitu membelinya [[1]](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.23.9764&rep=rep1&type=pdf). Sistem rekomendasi buku juga dapat membantu pembaca buku mengetahui informasi buku-buku yang akan dibaca selanjutnya sesuai dengan preferensi pengguna dari rekam jejak buku yang telah dibaca sebelumnya. Terjadi keuntungan dua pihak karena konsumen mendapatkan informasi yang diperlukan untuk membuat suatu keputusan sementara dari pemilik bisnis juga mendapatkan profit dari penjualan. Hal ini menjadikan sistem rekomendasi telah digunakan secara luas oleh hampir semua area bisnis. [[2]](https://ejournal.akprind.ac.id/index.php/technoscientia/article/view/612).
 
 Pada proyek machine learning ini, sistem rekomendasi yang akan dibuat memiliki fokus pada sistem rekomendasi buku karena di Indonesia sendiri masih diperlukan sebuah sistem yang dapat membantu merekomendasikan para pembaca agar lebih mudah mendapatkan informasi buku-buku yang akan dibaca selanjutnya. Hal ini didasarkan pada hasil survey kemampuan membaca oleh PISA tahun 2018 yang menghasilkan nilai skor membaca pelajar Indonesia yang masih sangat rendah [[3]](https://www.oecd.org/education/pisa-2018-results-volume-i-5f07c754-en.htm).
 
 ## Business Understanding
 !!!
-(Mengajukan dua atau lebih solution approach. Misalnya, menggunakan dua (atau lebih) algoritma sistem rekomendasi untuk mencapai solusi yang diinginkan.)
-Bepergian adalah salah satu aktifitas mengunjungi tempat lain dengan tujuan tertentu. Mobilitas melewati udara atau penerbangan sudah menjadi hal yang biasa dan semakin  dijangkau masyarakat luas dalam beberapa dekade terakhir. Bepergian tidak lepas dari risiko yang dapat mengganggu kenyamanan selama perjalanan hingga kembali ke tempat asal. Risiko ini menjadi peluang bagi asuransi bepergian untuk menawarkan jasa perlindungan dari hal-hal yang tidak terduga seperti kemungkinan sakit, hilang passport, keterlambatan pesawat, atau risiko dengan rumah yang ditinggalkan. Perusahaan asuransi bepergian tentu memerlukan strategi untuk memasarkan jasanya dengan tepat sasaran sehingga biaya promosi atau *marketing* dapat menjadi lebih efisien. Untuk memenuhi keperluan tersebut, proyek ini akan membuat sebuah model *machine learning* dengan kemampuan klasifikasi pelanggan dalam pembelian asuransi.
+Membaca adalah salah satu kegiatan mengumpulkan informasi serta memahami makna dari sebuah tulisan. Manfaat membaca diantaranya adalah meningkatkan kapasitas berpikir dan meningkatkan keterampilan menulis. Selain itu, membaca juga dapat menjadi kegiatan hiburan atau kegiatan yang mampu menenangkan pikiran karena sebuah bacaan dapat membawa pembacanya ke dunia imajinasi luas dalam konteks atau tema yang diangkat. Sehingga tak jarang apabila setelah membaca buku timbul keinginan untuk melanjutkan ke bacaan lainnya yang memiliki relasi atau kemiripan dengan bacaan sebelumnya.
+
+Keinginan ini membuat pembaca buku akan mencari preferensi buku bacaan selanjutnya yang serupa atau memiliki relasi terhadap buku yang telah dibaca. Relasi atau kesamaan tersebut dapat berupa kelanjutan isi buku atau kesamaan penulis buku. Harapannya adalah agar pembaca mendapatkan informasi lanjutan atau kesamaan sensasi membaca dari buku yang akan dibaca selanjutnya. Sistem rekomendasi dapat menjadikan salah satu solusi dari keperluan pembaca untuk mencari buku selanjutnya karena sistem rekomendasi mampu menghasilkan informasi-infomasi buku yang memiliki kemiripan dengan suatu preferensi tertentu. 
 
 ### Problem Statements
 
 Dari latar belakang di atas, dapat ditarik rumusan masalah sebagai berikut:
-1. Bagaimana melakukan pra-pemrosesan data asuransi perjalanan agar menghasilkan data latih bagi *machine learning* prediksi keputusan pelanggan dalam pembelian asuransi perjalanan?
-2. Bagaimana membuat model *machine learning* yang mampu memprediksi keputusan pelanggan dalam pembelian asuransi perjalanan?
+1. Sistem rekomendasi apa yang baik untuk diterapkan dalam konteks pemberian rekomendasi buku?
+2. Bagaimana cara membuat sistem rekomendasi bagi pembaca buku?
 
 ### Goals
 Tujuan proyek yang ingin dicapai adalah:
-1. Melakukan pra-pemrosesan data asuransi perjalanan agar menghasilkan data latih yang cukup bagi *machine learning* prediksi keputusan pelanggan dalam pembelian asuransi perjalanan.
-2. Membuat model *machine learning* yang mampu memprediksi keputusan pelanggan dalam pembelian asuransi perjalanan dengan akurasi >= 80%.
+1. Menentukan sistem rekomendasi buku yang hasilnya memiliki kemungkinan disukai pembaca buku.
+2. Membuat sistem rekomendasi buku bagi pembaca buku.
 
+!!!
 ### Solution statements
 Solusi dari *Problem Statements* di atas agar dapat mencapai *Goals* yang telah ditetapkan adalah menerapkan pra-pemrosesan data dan pembuatan model yang dapat diterangkan sebagai berikut:
 1. Pra-pemrosesan data. Pra-pemrosesan adalah pengolahan data mentah yang bertujuan mengurangi kemungkinan model menjadi bias atau bahkan gagal mencapai akurasi yang diinginkan. Pra-pemrosesan data pada proyek ini dilakukan dengan langkah-langkah berikut:
