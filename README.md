@@ -36,19 +36,28 @@ Tujuan proyek yang ingin dicapai adalah:
 1. Menentukan sistem rekomendasi buku yang hasilnya memiliki kemungkinan disukai pembaca buku.
 2. Membuat sistem rekomendasi buku bagi pembaca buku.
 
-!!!
+
 ### Solution Approach
+Pendekatan solusi untuk mencapai *Goals* di atas dapat dijabarkan dalam langkah-langkah berikut:
+1. Mengunduh data tentang rekomendasi buku.
+
+    Data diunduh dari Kaggle dengan tautan berikut [Book Recommendation Dataset](https://www.kaggle.com/arashnic/book-recommendation-dataset).
+2. Melakukan pra-pemrosesan data.
+
+    Pra-pemrosesan data pada proyek ini dilakukan dengan langkah-langkah berikut:
+      - **Pengolahan kolom fitur** dengan memilah serta memilih kolom yang memiliki korelasi tinggi dengan kolom target.
+      - **Pembagian dataset** dengan data latih 80% dan data uji 20%.
+      - **Standarisasi data** dengan mengubah skala data menjadi relatif sama atau mendekati distribusi normal. 
+3. Melakukan persiapan data.
+4. Membangun sistem rekomendasi.
+5. Melakukan evaluasi hasil sistem rekomendasi.
+
 Sampaikan solusi yang Anda ajukan untuk menyelesaikan permasalahan di sini. Misalnya, Anda mengajukan dua algoritma sistem rekomendasi sebagai solusi permasalahan, yaitu Content Based Filtering dan Collaborative Filtering. Jelaskan secara singkat mengenai kedua algoritma ini. 
 Sebagai contoh:
 - **Content Based Filtering**. Kalimat selanjutnya menjelaskan informasi atau cara kerja algoritma ini. Selain itu, dapat juga Anda tambahkan kelebihan dan kekurangan algoritma ini.
 - **Collaborative Filtering**. Sama dengan di atas.
-
-Solusi dari *Problem Statements* di atas agar dapat mencapai *Goals* yang telah ditetapkan adalah menentukan sistem rekomendasi yang tepat dan membuat model yang dapat diterangkan untuk kasus ini. 
-1. Menentukan sistem rekomendasi buku. Pra-pemrosesan adalah pengolahan data mentah yang bertujuan mengurangi kemungkinan model menjadi bias atau bahkan gagal mencapai akurasi yang diinginkan. Pra-pemrosesan data pada proyek ini dilakukan dengan langkah-langkah berikut:
-- **Pengolahan kolom fitur** dengan memilah serta memilih kolom yang memiliki korelasi tinggi dengan kolom target.
-- **Pembagian dataset** dengan data latih 80% dan data uji 20%.
-- **Standarisasi data** dengan mengubah skala data menjadi relatif sama atau mendekati distribusi normal. 
-2. Pembuatan model. Pembuatan model adalah menentukan model yang tepat untuk dilatih menggunakan data yang telah melewati pra-pemrosesan agar dapat memprediksi hasil sesuai tujuan proyek ini. Pembuatan model pada proyek ini menggunakan dua model yang selanjutnya model *baseline* ini akan dilakukan pengembangan untuk meningkatkan performa. Dua model tersebut adalah:
+Menentukan sistem rekomendasi buku. Pra-pemrosesan adalah pengolahan data mentah yang bertujuan mengurangi kemungkinan model menjadi bias atau bahkan gagal mencapai akurasi yang diinginkan. 
+8. Pembuatan model. Pembuatan model adalah menentukan model yang tepat untuk dilatih menggunakan data yang telah melewati pra-pemrosesan agar dapat memprediksi hasil sesuai tujuan proyek ini. Pembuatan model pada proyek ini menggunakan dua model yang selanjutnya model *baseline* ini akan dilakukan pengembangan untuk meningkatkan performa. Dua model tersebut adalah:
 - **KNN**. KNN adalah algoritma yang menggunakan kesamaan fitur untuk memprediksi nilai baru. Nilai baru ini didasarkan pada seberapa mirip dengan tetangganya sejumlah k, oleh karena itu disebut K-Nearest Neighbor.
 - **Gradient Boosting Algorithm**. Algoritma ini bekerja dengan meningkatkan (*boosting*) model yang dianggap memiliki performa rendah atau akurasi yang belum memuaskan.
 
