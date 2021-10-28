@@ -23,6 +23,8 @@ Pada proyek machine learning ini, sistem rekomendasi yang akan dibuat memiliki f
 ## Business Understanding
 Membaca adalah salah satu kegiatan mengumpulkan informasi serta memahami makna dari sebuah tulisan. Manfaat membaca diantaranya adalah meningkatkan kapasitas berpikir dan meningkatkan keterampilan menulis. Selain itu, membaca juga dapat menjadi kegiatan hiburan atau kegiatan yang mampu menenangkan pikiran karena sebuah bacaan dapat membawa pembacanya ke dunia imajinasi luas dalam konteks atau tema yang diangkat. Sehingga tak jarang apabila setelah membaca buku timbul keinginan untuk melanjutkan ke bacaan lainnya yang memiliki relasi atau kemiripan dengan bacaan sebelumnya.
 
+![journey](https://img.freepik.com/free-psd/every-book-is-new-wonderful-travel-quote-with-books_23-2148355614.jpg?size=626&ext=jpg)
+
 Keinginan ini membuat pembaca buku akan mencari preferensi buku bacaan selanjutnya yang serupa atau memiliki relasi terhadap buku yang telah dibaca. Relasi atau kesamaan tersebut dapat berupa kelanjutan isi buku atau kesamaan penulis buku. Harapannya adalah agar pembaca mendapatkan informasi lanjutan atau kesamaan sensasi membaca dari buku yang akan dibaca selanjutnya. Sistem rekomendasi dapat menjadikan salah satu solusi dari keperluan pembaca untuk mencari buku selanjutnya karena sistem rekomendasi mampu menghasilkan informasi-infomasi buku yang memiliki kemiripan dengan suatu preferensi tertentu. 
 
 ### Problem Statements
@@ -33,10 +35,10 @@ Dari latar belakang di atas, dapat ditarik rumusan masalah sebagai berikut:
 
 ### Goals
 Tujuan proyek yang ingin dicapai adalah:
-1. Menentukan sistem rekomendasi buku yang hasilnya memiliki kemungkinan disukai pembaca buku.
+1. Menentukan sistem rekomendasi buku yang hasilnya relevan dengan pembaca buku.
 2. Membuat sistem rekomendasi buku bagi pembaca buku.
 
-
+!!!
 ### Solution Approach
 Pendekatan solusi untuk mencapai *Goals* di atas dapat dijabarkan dalam langkah-langkah berikut:
 1. Mengunduh data tentang rekomendasi buku.
