@@ -38,7 +38,6 @@ Tujuan proyek yang ingin dicapai adalah:
 1. Menentukan sistem rekomendasi buku yang hasilnya relevan dengan pembaca buku.
 2. Membuat sistem rekomendasi buku bagi pembaca buku.
 
-!!!
 ### Solution Approach
 Pendekatan solusi untuk mencapai *Goals* di atas dapat dijabarkan dalam langkah-langkah berikut:
 1. Mengunduh data tentang rekomendasi buku.
@@ -61,19 +60,21 @@ Pendekatan solusi untuk mencapai *Goals* di atas dapat dijabarkan dalam langkah-
 4. Membangun sistem rekomendasi.
 
     Sistem rekomendasi yang diajukan untuk menyelesaikan permasalahan ini adalah penggunaan dua algoritma *Content Based Filtering* dan *Collaborative Filtering*.
-    - **Content Based Filtering**. Dalam konteks penelitian ini dan berdasarkan sumber [[2]](https://ejournal.akprind.ac.id/index.php/technoscientia/article/view/612), metode *Content Based Filtering* bekerja dengan mencari kedekatan suatu buku yang akan direkomendasikan dengan buku yang telah diambil oleh pembaca berdasarkan kemiripan antar isinya.
+    - **Content Based Filtering**. Dalam konteks penelitian ini dan berdasarkan sumber [[2]](https://ejournal.akprind.ac.id/index.php/technoscientia/article/view/612), algoritma *content based filtering* bekerja dengan mencari kedekatan suatu buku yang akan direkomendasikan dengan buku yang telah diambil oleh pembaca berdasarkan kemiripan antar isinya.
         - Kelebihan:
-            - Hasil rekomendasi didasarkan pada preferensi di dalam buku.
+            - Hasil rekomendasi didasarkan pada preferensi buku.
             - Sederhana dan transparan karena mudah dipahami bagaimana algoritma ini bekerja.
         - Kelemahan:
             - Pembaca buku tidak mendapatkan rekomendasi dari jenis buku yang berbeda.
-    - **Collaborative Filtering**. Algoritma ini bekerja dengan membandingkan preferensi pengguna lain yang telah menilai sebuah buku.
+    - **Collaborative Filtering**. Algoritma *collaborative filtering* dalam konteks penelitian ini bekerja dengan mengumpulkan dan mengolah sejumlah besar informasi yang didasarkan pada aktifitas pembaca buku seperti pemberian nilai, penulis buku, atau preferensi lainnya. Informasi yang telah dikumpulkan dan diolah tersebut akan digunakan sebagai preferensi dengan pembaca buku lain dengan mencari kesamaannya.
         - Kelebihan:
             - Informasi tentang preferensi dapat ditambahkan secara mudah.
             - Adanya rekam jejak preferensi memudahkan sistem rekomendasi bekerja lebih baik.
         - Kelemahan:
             - Kurang efektif terhadap pengguna yang belum memiliki data karena tidak terdapat informasi yang cukup.
 5. Melakukan evaluasi hasil sistem rekomendasi.
+
+    Tahap ini dilakukan untuk mengukur seberapa baik hasil sistem rekomendasi. Berdasarkan algoritma yang akan digunakan, evaluasi yang bisa diterapkan adalah nilai presisi >80% pada algoritma *content based filtering* dan nilai RMSE (*Root Mean Squared Error*) <10% skala data pada algoritma *collaborative filtering*.
 
 ## Data Understanding
 Paragraf awal bagian ini menjelaskan informasi mengenai data yang Anda gunakan dalam proyek. Sertakan juga sumber atau tautan untuk mengunduh dataset. Contoh: [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Restaurant+%26+consumer+data).
