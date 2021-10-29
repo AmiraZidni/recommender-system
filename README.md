@@ -57,6 +57,7 @@ Pendekatan solusi untuk mencapai *Goals* di atas dapat dijabarkan dalam langkah-
       - **Menghapus baris** yang tidak memiliki nilai setelah digabungkan.
       - **Mengelompokkan dan mengurutkan data** berdasarkan rating.
       - **Mengambil sampel data** karena data ini terlalu besar dan menghabiskan banyak sumber daya RAM yang dapat menghasilkan *notebook crash* pada Google Colab proyek ini.
+      - **Pembagian dataset** dengan data latih 80% dan data uji 20%.
 4. Membangun sistem rekomendasi.
 
     Sistem rekomendasi yang diajukan untuk menyelesaikan permasalahan ini adalah penggunaan dua algoritma *Content Based Filtering* dan *Collaborative Filtering*.
@@ -77,15 +78,6 @@ Pendekatan solusi untuk mencapai *Goals* di atas dapat dijabarkan dalam langkah-
     Tahap ini dilakukan untuk mengukur seberapa baik hasil sistem rekomendasi. Berdasarkan algoritma yang akan digunakan, evaluasi yang bisa diterapkan adalah nilai presisi >80% pada algoritma *content based filtering* dan nilai RMSE (*Root Mean Squared Error*) <10% skala data pada algoritma *collaborative filtering*.
 
 ## Data Understanding
-Paragraf awal bagian ini menjelaskan informasi mengenai data yang Anda gunakan dalam proyek. Sertakan juga sumber atau tautan untuk mengunduh dataset. Contoh: [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Restaurant+%26+consumer+data).
-Selanjutnya, uraikanlah seluruh variabel atau fitur pada data. Sebagai contoh:  
-
-Variabel-variabel pada Restaurant UCI dataset adalah sebagai berikut:
-- accepts : merupakan jenis pembayaran yang diterima pada restoran tertentu.
-- cuisine : merupakan jenis masakan yang disajikan pada restoran.
-- dst
-
-(Melakukan beberapa tahapan yang diperlukan mengenai data, contohnya teknik visualisasi data atau exploratory data analysis.)
 Dataset proyek ini berasal dari platform Kaggle yang dipublikasi oleh Möbius dengan judul [Book Recommendation Dataset](https://www.kaggle.com/arashnic/book-recommendation-dataset). Berdasarkan metadata, dataset ini dikumpulkan oleh Cai-Nicolas Ziegler di tahun 2004 yang bersumber dari komunitas [bookcrossing](
 https://www.bookcrossing.com/howto). Terdapat tiga buah dataset yaitu Books.csv, Ratings.csv, dan Users.csv.
 
@@ -119,15 +111,19 @@ Terakhir, dalam dataset Users.csv yang berisi informasi tentang *user*/pemberi n
 | Age                 | Usia *user*/pemberi nilai buku.                                                      |
 
 ## Data Preparation !!!
-Pada bagian ini Anda menjelaskan teknik yang digunakan pada tahapan Data Preparation. 
 - Terapkan minimal satu teknik data preparation dan jelaskan proses yang dilakukan.
 - Jelaskan juga alasan mengapa Anda perlu menerapkan teknik tersebut pada tahap Data Preparation. 
 
-(Menerapkan dua atau lebih teknik yang diperlukan dalam tahapan data preparation.)
 Tahap persiapan data atau pra-pemrosesan data dilakukan dengan langkah-langkah berikut:
-- **Resample dataset** dengan menyeimbangkan jumlah data. Resample dataset diperlukan untuk menghindari hasil prediksi yang bias dikarenakan kuantitas yang tidak seimbang dalam sebuah data.
+- **Mengganti nama kolom** dengan nama yang bisa digunakan dalam pengolahan lanjutan yakni mengubah strip (-) dengan garis bawah (_).
+- **Memperbaiki nilai** dari baris yang terdapat kesalahan ketik atau nilai abnormal.
+- **Menghapus kolom yang tidak diperlukan** seperti kolom gambar.
+- **Menghapus baris** yang memiliki nilai kosong.
+- **Menggabungkan data** berdasarkan nilai kolom kunci.
+- **Menghapus baris** yang tidak memiliki nilai setelah digabungkan.
+- **Mengelompokkan dan mengurutkan data** berdasarkan rating.
+- **Mengambil sampel data** karena data ini terlalu besar dan menghabiskan banyak sumber daya RAM yang dapat menghasilkan *notebook crash* pada Google Colab proyek ini.
 - **Pembagian dataset** dengan data latih 80% dan data uji 20%. Pembagian dataset tentunya diperlukan agar model yang telah dilatih dapat diujikan seberapa akurat hasil prediksinya terhadap data baru. Dalam dataset ini rasio 80:20 dapat dikatakan masih ideal karena jumlahnya masih ribuan saja (1987 baris).
-- **Standarisasi data** dengan mengubah skala data menjadi relatif sama atau mendekati distribusi normal. Tahap standarisasi digunakan untuk menyeragamkan fitur numerik dalam skala data yang sama dan dapat lebih mudah diolah saat pelatihan model.
 
 ## Modeling
 Tahapan ini membahas mengenai **pembuatan model sistem rekomendasi** untuk menyelesaikan permasalahan dan **menyajikan top-N recommendation sebagai solusi.**
