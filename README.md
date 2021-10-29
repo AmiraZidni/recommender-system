@@ -86,22 +86,39 @@ Variabel-variabel pada Restaurant UCI dataset adalah sebagai berikut:
 - dst
 
 (Melakukan beberapa tahapan yang diperlukan mengenai data, contohnya teknik visualisasi data atau exploratory data analysis.)
-Dataset proyek ini berasal dari platform Kaggle yang dipublikasi oleh TejasTheBard dengan judul [Travel Insurance Prediction Data](https://www.kaggle.com/tejashvi14/travel-insurance-prediction-data). Berdasarkan metadata, dataset ini bersumber basis data perusahaan perjalanan di India. Dari dataset TravelInsurancePrediction.csv yang diunduh, dataset memiliki 10 kolom dengan keterangan berikut:
+Dataset proyek ini berasal dari platform Kaggle yang dipublikasi oleh Möbius dengan judul [Book Recommendation Dataset](https://www.kaggle.com/arashnic/book-recommendation-dataset). Berdasarkan metadata, dataset ini dikumpulkan oleh Cai-Nicolas Ziegler di tahun 2004 yang bersumber dari komunitas [bookcrossing](
+https://www.bookcrossing.com/howto). Terdapat tiga buah dataset yaitu Books.csv, Ratings.csv, dan Users.csv.
 
-| Fitur               | Deskripsi                                                                                             |
-| --------------------| ----------------------------------------------------------------------------------------------------- |
-| Index               | Indeks atau nomor baris.                                                                              |
-| Age                 | Umur pelanggan.                                                                                       |
-| Employment Type     | Sektor pelanggan bekerja (Pemerintah (Government Sector) atau Swasta (Private Sector/Self Employed'). |
-| GraduateOrNot       | Status lulusan perguruan tinggi.                                                                      |
-| AnnualIncome        | Pendapatan tahunan (Rupee).                                                                           |
-| FamilyMembers       | Jumlah anggota keluarga.                                                                              |
-| ChronicDiseases     | Status ada tidaknya penyakit kronis pelanggan (asma, diabetes, darah tinggi, dll).                    |
-| FrequentFlyer       | Status jika sering bepergian berdasarkan riwayat 2 tahun terakhir.                                    |
-| EverTravelledAbroad | Status bepergian ke luar negeri.                                                                      |
-| TravelInsurance     | Status pelanggan membeli paket asuransi.                                                              |
+Books.csv adalah data mengenai buku dengan 8 kolom dengan keterangan sebagai berikut:
 
-## Data Preparation
+| Kolom               | Deskripsi                                                                                      |
+| --------------------| ---------------------------------------------------------------------------------------------- |
+| ISBN                | *International Standard Book Number* atau deretan 13 digit angka nomor identifikasi buku.      |
+| Book-Title          | Judul buku.                                                                                    |
+| Book-Author         | Penulis Buku.                                                                                  |
+| Year-Of-Publication | Tahun publikasi buku.                                                                          |
+| Publisher           | Penerbit buku.                                                                                 |
+| Image-URL-S         | Alamat URL cover buku ukuran kecil.                                                            |
+| Image-URL-M         | Alamat URL cover buku ukuran menengah.                                                         |
+| Image-URL-L         | Alamat URL cover buku ukuran besar.                                                            |
+
+Dalam dataset Ratings.csv yang berisi informasi peringkat buku terdapat 3 kolom dengan keterangan berikut:
+
+| Kolom               | Deskripsi                                                                                        |
+| --------------------| ------------------------------------------------------------------------------------------------ |
+| User-ID             | Nomor identifikasi *user*/pemberi nilai buku.                                                    |
+| ISBN                | *International Standard Book Number* atau deretan 13 digit angka nomor identifikasi buku.        |
+| Book-Rating         | Nilai buku yang diberikan *user*/pemberi nilai buku. Berisi rentang nilai 0-10 (semakin tinggi semakin baik) sebagai penilaian eksplisit dan juga terdapat nilai 0 sebagai penilaian implisit.              |
+
+Terakhir, dalam dataset Users.csv yang berisi informasi tentang *user*/pemberi nilai buku terdapat 3 kolom dengan keterangan berikut:
+
+| Kolom               | Deskripsi                                                                            |
+| --------------------| ------------------------------------------------------------------------------------ |
+| User-ID             | Nomor identifikasi *user*/pemberi nilai buku.                                        |
+| Location            | Lokasi *user*/pemberi nilai buku yang tersusun dari kota, negara bagian, dan negara. |
+| Age                 | Usia *user*/pemberi nilai buku.                                                      |
+
+## Data Preparation !!!
 Pada bagian ini Anda menjelaskan teknik yang digunakan pada tahapan Data Preparation. 
 - Terapkan minimal satu teknik data preparation dan jelaskan proses yang dilakukan.
 - Jelaskan juga alasan mengapa Anda perlu menerapkan teknik tersebut pada tahap Data Preparation. 
