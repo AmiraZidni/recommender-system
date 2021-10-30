@@ -134,7 +134,8 @@ Tahap persiapan data sebagaimana yang telah dijelaskan pada bagian *Solution App
 - **Memperbaiki nilai.**
 
     Hal ini dilakukan karena beberapa isi kolom data terdapat kesalahan ketik atau nilai abnormal seperti:
-        - Nilai kolom Year-Of-Publication pada data Books.csv yang memiliki kesalahan nilai dan terdapat nilai abnormal 0 dan nilai di atas 2014 (dataset diambil tahun 2014). Perbaikan nilai pada kesalahan tulis dapat diperbaiki secara manual. Sedangkan nilai abnormal diperbaiki dengan melakukan imputasi nilai yang sering muncul atau nilai modus karena imputasi dengan nilai mean tidak cocok untuk kolom ini yang mana memiliki skewness negatif yang apabila diberikan imputasi mean akan mengubah pola distribusinya.
+    
+    - Nilai kolom Year-Of-Publication pada data Books.csv yang memiliki kesalahan nilai dan terdapat nilai abnormal 0 dan nilai di atas 2014 (dataset diambil tahun 2014). Perbaikan nilai pada kesalahan tulis dapat diperbaiki secara manual. Sedangkan nilai abnormal diperbaiki dengan melakukan imputasi nilai yang sering muncul atau nilai modus karena imputasi dengan nilai mean tidak cocok untuk kolom ini yang mana memiliki skewness negatif yang apabila diberikan imputasi mean akan mengubah pola distribusinya.
         
     
     ![wrongyearvalue](https://user-images.githubusercontent.com/68690376/139519636-3887c3f7-4824-485f-a0d1-01020f8820fd.png)
@@ -146,7 +147,7 @@ Tahap persiapan data sebagaimana yang telah dijelaskan pada bagian *Solution App
 
 
 
-    Selanjutnya nilai kolom Age pada Users.csv yang memiliki nilai abnormal 0 dan di atas 95 tahun. Hal ini menjadi abnormal karena secara nalar tidak mungkin seseorang yang berumur kurang dari 5 tahun atau lebih dari 95 tahun memberikan penilaian buku. Nilai abnormal kolom pada ini diberlakukan sama dengan teknik sebelumnya yakni imputasi dengan nilai modus karena kolom ini memiliki skewness positif.
+    - Nilai kolom Age pada Users.csv yang memiliki nilai abnormal 0 dan di atas 95 tahun. Hal ini menjadi abnormal karena secara nalar tidak mungkin seseorang yang berumur kurang dari 5 tahun atau lebih dari 95 tahun memberikan penilaian buku. Nilai abnormal kolom pada ini diberlakukan sama dengan teknik sebelumnya yakni imputasi dengan nilai modus karena kolom ini memiliki skewness positif.
         
     ![wrongagevalue](https://user-images.githubusercontent.com/68690376/139520522-7353c295-d5de-415d-9ba7-5e52f016ce68.png)
 
