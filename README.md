@@ -53,9 +53,8 @@ Pendekatan solusi untuk mencapai *Goals* di atas dapat dijabarkan dalam langkah-
 3. Melakukan persiapan data.
 
     Persiapan data pada proyek ini dilakukan untuk mempersiapkan data sebelum digunakan untuk melatih model sistem rekomendasi. Persiapan data diantaranya adalah:
-      - **Menggabungkan data** berdasarkan nilai kolom kunci.
-      - **Menghapus baris** yang tidak memiliki nilai setelah digabungkan.
-      - **Mengelompokkan dan mengurutkan data** berdasarkan rating.
+      - **Menggabungkan data** berdasarkan nilai kolom kunci dan **menghapus baris** yang tidak memiliki nilai setelah digabungkan.
+      - **Mengelompokkan dan mengurutkan data** berdasarkan *rating*.
       - **Mengambil sampel data** karena data ini terlalu besar dan menghabiskan banyak sumber daya RAM yang dapat menghasilkan *notebook crash* pada Google Colab proyek ini.
       - **Pembagian dataset** dengan data latih 80% dan data uji 20%.
 4. Membangun sistem rekomendasi.
@@ -94,30 +93,35 @@ Books.csv adalah data mengenai buku dengan 8 kolom dengan keterangan sebagai ber
 | Image-URL-M         | Alamat URL cover buku ukuran menengah.                                                         |
 | Image-URL-L         | Alamat URL cover buku ukuran besar.                                                            |
 
+Umumnya kita bisa langsung melihat visualisasi distribusi penyebaran nilai dari kolom tahun terbit (Year-Of-Publication) tetapi setelah diperiksa terdapat kesalahan tipe data pada kolom tersebut yang seharusnya int tetapi justru *object*. Ada kemungkinan terdapat kesalahan nilai di dalamnya yang akan kita periksa di proses selanjutnya.
+
+![wrongtypebookyear](https://user-images.githubusercontent.com/68690376/139523432-0f11289c-5785-4a50-8f07-e018bbcc9c1b.png)
+
 Dalam dataset Ratings.csv yang berisi informasi peringkat buku terdapat 3 kolom dengan keterangan berikut:
 
 | Kolom               | Deskripsi                                                                                        |
 | --------------------| ------------------------------------------------------------------------------------------------ |
-| User-ID             | Nomor identifikasi *user*/pemberi nilai buku.                                                    |
+| User-ID             | Nomor identifikasi *user* atau pemberi nilai buku.                                                    |
 | ISBN                | *International Standard Book Number* atau deretan 13 digit angka nomor identifikasi buku.        |
-| Book-Rating         | Nilai buku yang diberikan *user*/pemberi nilai buku. Berisi rentang nilai 0-10 (semakin tinggi semakin baik) sebagai penilaian eksplisit dan juga terdapat nilai 0 sebagai penilaian implisit.              |
+| Book-Rating         | Nilai buku yang diberikan *user* atau pemberi nilai buku. Berisi rentang nilai 0-10 (semakin tinggi semakin baik) sebagai penilaian eksplisit dan juga terdapat nilai 0 sebagai penilaian implisit.              |
 
-Terakhir, dalam dataset Users.csv yang berisi informasi tentang *user*/pemberi nilai buku terdapat 3 kolom dengan keterangan berikut:
+Distribusi Book-Rating memiliki nilai 0 cukup banyak. Menurut metadata, nilai 0 ini adalah penilaian implisit yang perlu dilakukan pengolahan di proses selanjutnya untuk membedakan penilaian eksplisit.
+
+![bookrating](https://user-images.githubusercontent.com/68690376/139523475-e8aea4bd-c352-40ea-ace7-0c82e35786bf.png)
+
+
+Terakhir, dalam dataset Users.csv yang berisi informasi tentang *user* atau pemberi nilai buku terdapat 3 kolom dengan keterangan berikut:
 
 | Kolom               | Deskripsi                                                                            |
 | --------------------| ------------------------------------------------------------------------------------ |
-| User-ID             | Nomor identifikasi *user*/pemberi nilai buku.                                        |
-| Location            | Lokasi *user*/pemberi nilai buku yang tersusun dari kota, negara bagian, dan negara. |
-| Age                 | Usia *user*/pemberi nilai buku.                                                      |
+| User-ID             | Nomor identifikasi *user* atau pemberi nilai buku.                                        |
+| Location            | Lokasi *user* atau pemberi nilai buku yang tersusun dari kota, negara bagian, dan negara. |
+| Age                 | Usia *user* atau pemberi nilai buku.                                                      |
 
 Distribusi nilai Age pada data Users.csv memiliki skewness positif dan terdapat nilai abnormal yang akan kita proses di tahap selanjutnya.
-![rawagegraph](https://user-images.githubusercontent.com/68690376/139520534-11c16dcd-84ae-4fc9-9126-1616abd865f8.png)
-
+![rawagegraph](https://user-images.githubusercontent.com/68690376/139523117-59349e35-a01a-493c-b6e4-845f4af639a3.png)
 
 ## Data Preparation
-- Terapkan minimal satu teknik data preparation dan jelaskan proses yang dilakukan.
-- Jelaskan juga alasan mengapa Anda perlu menerapkan teknik tersebut pada tahap Data Preparation. 
-
 Tahap persiapan data sebagaimana yang telah dijelaskan pada bagian *Solution Approach* terdiri dari langkah-langkah berikut:
 - **Mengganti nama kolom.**
 
@@ -133,14 +137,25 @@ Tahap persiapan data sebagaimana yang telah dijelaskan pada bagian *Solution App
         - Nilai kolom Year-Of-Publication pada data Books.csv yang memiliki kesalahan nilai dan terdapat nilai abnormal 0 dan nilai di atas 2014 (dataset diambil tahun 2014). Perbaikan nilai pada kesalahan tulis dapat diperbaiki secara manual. Sedangkan nilai abnormal diperbaiki dengan melakukan imputasi nilai yang sering muncul atau nilai modus karena imputasi dengan nilai mean tidak cocok untuk kolom ini yang mana memiliki skewness negatif yang apabila diberikan imputasi mean akan mengubah pola distribusinya.
 ![wrongyearvalue](https://user-images.githubusercontent.com/68690376/139519636-3887c3f7-4824-485f-a0d1-01020f8820fd.png)
 
+Kesalahan nilai pada kolom Year-Of-Publication.
+
+![wrongbookvalue](https://user-images.githubusercontent.com/68690376/139523219-a4ea34a5-96d4-4e4e-9c07-2542597c9741.png)
+
+Hasil pemeriksaan nilai yang salah di *dataframe*.
+
+![afterprocessyearskewness](https://user-images.githubusercontent.com/68690376/139523249-c7a4bb9d-44a9-4afb-b3b5-b018e30a4156.png)
+
+Hasil perbaikan nilai di kolom Year-Of-Publication.
+
         - Nilai kolom Age pada ata Users.csv yang memiliki nilai abnormal 0 dan di atas 95 tahun. Hal ini menjadi abnormal karena secara nalar tidak mungkin seseorang yang berumur kurang dari 5 tahun dan lebih dari 95 tahun memberikan penilaian buku. Nilai abnormal kolom pada ini diberlakukan sama dengan teknik sebelumnya yakni imputasi dengan nilai modus karena kolom ini memiliki skewness positif.
+        
 ![wrongagevalue](https://user-images.githubusercontent.com/68690376/139520522-7353c295-d5de-415d-9ba7-5e52f016ce68.png)
 
 
 - **Menghapus kolom yang tidak diperlukan.**
 
     Kolom atau fitur pada data yang tidak digunakan seperti Image-URL-S, Image-URL-M, Image-URL-L akan dihapus karena pembangunan sistem rekomendasi tidak membutuhkan fitur alamat URL buku.
-- **Menghapus baris tertentu.**.
+- **Menghapus baris yang memiliki nilai kosong.**
 
     Penghapusan baris dengan ketentuan tertentu seperti baris yang tidak memiliki nilai dilakukan setelah perbaikan nilai pada tahap sebelumnya tidak memungkinan untuk dilakukan. Beberapa penghapusan baris dengan ketentuannya dilakukan pada baris berikut:
         - Baris yang memiliki nilai kosong Book-Author dan Publisher dalam data Books.csv.
@@ -156,8 +171,8 @@ Tahap persiapan data sebagaimana yang telah dijelaskan pada bagian *Solution App
     Langkah ini diperlukan karena data yang sudah dibersihkan dan diolah memiliki ukuran terlalu besar dan akan menghabiskan banyak sumber daya RAM yang dapat menghasilkan *notebook crash* atau berhentinya proses komputasi pada Google Colab dalam proyek ini. Ukuran sampel yang diambil adalah 10.000 baris pertama dari data utama.
  
 - **Pembagian dataset.**
-    Pembagian ditentukan dengan ukuran data latih 80% dan data uji 20%. Ini diperlukan agar model yang telah dilatih dapat diujikan seberapa akurat hasil prediksinya terhadap data baru. Dalam dataset ini rasio 80:20 dapat dikatakan masih ideal karena jumlahnya masih ribuan saja (1987 baris).
-!!!
+    Pembagian ditentukan dengan ukuran data latih 80% dan data uji 20%. Ini diperlukan agar model yang telah dilatih dapat diujikan seberapa akurat hasil prediksinya terhadap data baru. Dalam dataset ini rasio 80:20 dapat dikatakan masih ideal karena jumlahnya masih ribuan saja (1987 baris). !!!
+
 ## Modeling
 Tahapan ini membahas mengenai **pembuatan model sistem rekomendasi** untuk menyelesaikan permasalahan dan **menyajikan top-N recommendation sebagai solusi.**
 
