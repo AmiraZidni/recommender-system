@@ -14,7 +14,7 @@
 ## Project Overview
 Proyek *machine learning* ini akan membahas tentang **"Sistem Rekomendasi Buku dengan Content Based Filtering dan Collaborative Filtering"**.
 
-![banner](../main/images/banner.png "banner")
+![banner](https://user-images.githubusercontent.com/68690376/139519652-2bc91225-c5f7-4db2-a238-fd25d1d707d5.png)
 
 Membaca buku adalah salah satu kegiatan yang belum banyak peminatnya di Indonesia. Padahal membaca adalah jendela ilmu. Bahkan salah satu segmen pasar awal e-commerce Amazon adalah pasar buku sebelum akhirnya meluaskan target pasar ke segmen lainnya. Dalam e-commerce Amazon, tentunya terdapat sistem rekomendasi yang membantu pengunjung mencari buku agar pengunjung website tersebut membuat keputusan akhir yaitu membelinya [[1]](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.23.9764&rep=rep1&type=pdf). Sistem rekomendasi buku juga dapat membantu pembaca buku mengetahui informasi buku-buku yang akan dibaca selanjutnya sesuai dengan preferensi pengguna dari rekam jejak buku yang telah dibaca sebelumnya. Terjadi keuntungan dua pihak karena konsumen mendapatkan informasi yang diperlukan untuk membuat suatu keputusan sementara dari pemilik bisnis juga mendapatkan profit dari penjualan. Hal ini menjadikan sistem rekomendasi telah digunakan secara luas oleh hampir semua area bisnis. [[2]](https://ejournal.akprind.ac.id/index.php/technoscientia/article/view/612).
 
@@ -48,7 +48,7 @@ Pendekatan solusi untuk mencapai *Goals* di atas dapat dijabarkan dalam langkah-
     Pra-pemrosesan data diperlukan agar data yang akan diumpankan pada model *machine learning* tidak memiliki bias atau mengalami kegagalan memprediksi rekomendasi. Pra-pemrosesan data pada proyek ini adalah:
       - **Mengganti nama kolom** dengan nama yang bisa digunakan dalam pengolahan lanjutan yakni mengubah strip (-) dengan garis bawah (_).
       - **Memperbaiki nilai** dari baris yang terdapat kesalahan ketik atau nilai abnormal.
-      - **Menghapus kolom yang tidak diperlukan** seperti kolom gambar.
+      - **Menghapus kolom yang tidak diperlukan** seperti kolom gambar karena tidak berpengaruh ke pembuatan sistem rekomendasi.
       - **Menghapus baris** yang memiliki nilai kosong.
 3. Melakukan persiapan data.
 
@@ -110,21 +110,54 @@ Terakhir, dalam dataset Users.csv yang berisi informasi tentang *user*/pemberi n
 | Location            | Lokasi *user*/pemberi nilai buku yang tersusun dari kota, negara bagian, dan negara. |
 | Age                 | Usia *user*/pemberi nilai buku.                                                      |
 
-## Data Preparation !!!
+Distribusi nilai Age pada data Users.csv memiliki skewness positif dan terdapat nilai abnormal yang akan kita proses di tahap selanjutnya.
+![rawagegraph](https://user-images.githubusercontent.com/68690376/139520534-11c16dcd-84ae-4fc9-9126-1616abd865f8.png)
+
+
+## Data Preparation
 - Terapkan minimal satu teknik data preparation dan jelaskan proses yang dilakukan.
 - Jelaskan juga alasan mengapa Anda perlu menerapkan teknik tersebut pada tahap Data Preparation. 
 
-Tahap persiapan data atau pra-pemrosesan data dilakukan dengan langkah-langkah berikut:
-- **Mengganti nama kolom** dengan nama yang bisa digunakan dalam pengolahan lanjutan yakni mengubah strip (-) dengan garis bawah (_).
-- **Memperbaiki nilai** dari baris yang terdapat kesalahan ketik atau nilai abnormal.
-- **Menghapus kolom yang tidak diperlukan** seperti kolom gambar.
-- **Menghapus baris** yang memiliki nilai kosong.
-- **Menggabungkan data** berdasarkan nilai kolom kunci.
-- **Menghapus baris** yang tidak memiliki nilai setelah digabungkan.
-- **Mengelompokkan dan mengurutkan data** berdasarkan rating.
-- **Mengambil sampel data** karena data ini terlalu besar dan menghabiskan banyak sumber daya RAM yang dapat menghasilkan *notebook crash* pada Google Colab proyek ini.
-- **Pembagian dataset** dengan data latih 80% dan data uji 20%. Pembagian dataset tentunya diperlukan agar model yang telah dilatih dapat diujikan seberapa akurat hasil prediksinya terhadap data baru. Dalam dataset ini rasio 80:20 dapat dikatakan masih ideal karena jumlahnya masih ribuan saja (1987 baris).
+Tahap persiapan data sebagaimana yang telah dijelaskan pada bagian *Solution Approach* terdiri dari langkah-langkah berikut:
+- **Mengganti nama kolom.**
 
+    Pergantian nama ini dilakukan karena beberapa nama kolom seperti User-ID akan sulit digunakan dalam penggunaan syntax python di langkah selanjutnya. Pergantian nama kolom dilakukan dengan cara mengubah karakter strip (-) dengan garis bawah (_). Nama-nama kolom yang diubah adalah:
+        1. Book-Title menjadi book_title.
+        2. Book-Author menjadi book_author.
+        3. Year-Of-Publication menjadi year_of_publication.
+        4. User-ID menjadi user_id.
+        5. Book-Rating menjadi book-rating.
+- **Memperbaiki nilai.**
+
+    Hal ini dilakukan karena beberapa isi kolom data terdapat kesalahan ketik atau nilai abnormal seperti:
+        - Nilai kolom Year-Of-Publication pada data Books.csv yang memiliki kesalahan nilai dan terdapat nilai abnormal 0 dan nilai di atas 2014 (dataset diambil tahun 2014). Perbaikan nilai pada kesalahan tulis dapat diperbaiki secara manual. Sedangkan nilai abnormal diperbaiki dengan melakukan imputasi nilai yang sering muncul atau nilai modus karena imputasi dengan nilai mean tidak cocok untuk kolom ini yang mana memiliki skewness negatif yang apabila diberikan imputasi mean akan mengubah pola distribusinya.
+![wrongyearvalue](https://user-images.githubusercontent.com/68690376/139519636-3887c3f7-4824-485f-a0d1-01020f8820fd.png)
+
+        - Nilai kolom Age pada ata Users.csv yang memiliki nilai abnormal 0 dan di atas 95 tahun. Hal ini menjadi abnormal karena secara nalar tidak mungkin seseorang yang berumur kurang dari 5 tahun dan lebih dari 95 tahun memberikan penilaian buku. Nilai abnormal kolom pada ini diberlakukan sama dengan teknik sebelumnya yakni imputasi dengan nilai modus karena kolom ini memiliki skewness positif.
+![wrongagevalue](https://user-images.githubusercontent.com/68690376/139520522-7353c295-d5de-415d-9ba7-5e52f016ce68.png)
+
+
+- **Menghapus kolom yang tidak diperlukan.**
+
+    Kolom atau fitur pada data yang tidak digunakan seperti Image-URL-S, Image-URL-M, Image-URL-L akan dihapus karena pembangunan sistem rekomendasi tidak membutuhkan fitur alamat URL buku.
+- **Menghapus baris tertentu.**.
+
+    Penghapusan baris dengan ketentuan tertentu seperti baris yang tidak memiliki nilai dilakukan setelah perbaikan nilai pada tahap sebelumnya tidak memungkinan untuk dilakukan. Beberapa penghapusan baris dengan ketentuannya dilakukan pada baris berikut:
+        - Baris yang memiliki nilai kosong Book-Author dan Publisher dalam data Books.csv.
+        - Baris yang memiliki nilai 0 pada kolom book_rating dalam Users.csv karena saat ini belum cukup informasi untuk mengolah penilaian implisit.
+- **Menggabungkan data.**
+
+    Penggabungan data dilakukan untuk mengumpulkan seluruh data berdasarkan fitur user_id dan ISBN. Hasil penggabungan ini adalah sebuah data utama yang perlu dibersihkan kembali pada baris yang memiliki nilai kosong sebelum melanjutkan langkah berikutnya.
+- **Mengelompokkan dan mengurutkan data.**
+
+    Hal ini dilakukan dengan menghimpun data utama yang telah digabung dan diurutkan berdasarkan book_rating agar mengembalikan data utama yang bersifat unik dan urut berdasarkan penilaian buku tertinggi.
+- **Mengambil sampel data.**
+
+    Langkah ini diperlukan karena data yang sudah dibersihkan dan diolah memiliki ukuran terlalu besar dan akan menghabiskan banyak sumber daya RAM yang dapat menghasilkan *notebook crash* atau berhentinya proses komputasi pada Google Colab dalam proyek ini. Ukuran sampel yang diambil adalah 10.000 baris pertama dari data utama.
+ 
+- **Pembagian dataset.**
+    Pembagian ditentukan dengan ukuran data latih 80% dan data uji 20%. Ini diperlukan agar model yang telah dilatih dapat diujikan seberapa akurat hasil prediksinya terhadap data baru. Dalam dataset ini rasio 80:20 dapat dikatakan masih ideal karena jumlahnya masih ribuan saja (1987 baris).
+!!!
 ## Modeling
 Tahapan ini membahas mengenai **pembuatan model sistem rekomendasi** untuk menyelesaikan permasalahan dan **menyajikan top-N recommendation sebagai solusi.**
 
