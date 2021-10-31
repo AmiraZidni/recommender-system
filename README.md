@@ -53,9 +53,10 @@ Pendekatan solusi untuk mencapai *Goals* di atas dapat dijabarkan dalam langkah-
 3. Melakukan persiapan data.
 
     Persiapan data pada proyek ini dilakukan untuk mempersiapkan data sebelum digunakan untuk melatih model sistem rekomendasi. Persiapan data diantaranya adalah:
-      - **Menggabungkan data** berdasarkan nilai kolom kunci dan **menghapus baris** yang tidak memiliki nilai setelah digabungkan.
+      - **Menggabungkan data** berdasarkan nilai kolom kunci.
       - **Mengelompokkan dan mengurutkan data** berdasarkan *rating*.
       - **Mengambil sampel data** karena data ini terlalu besar dan menghabiskan banyak sumber daya RAM yang dapat menghasilkan *notebook crash* pada Google Colab proyek ini.
+      - ***Encoding* Fitur** atau menyandikan (*encode*) fitur.
       - **Pembagian dataset** dengan data latih 80% dan data uji 20%.
 4. Membangun sistem rekomendasi.
 
@@ -126,11 +127,16 @@ Tahap persiapan data sebagaimana yang telah dijelaskan pada bagian *Solution App
 - **Mengganti nama kolom.**
 
     Pergantian nama ini dilakukan karena beberapa nama kolom seperti User-ID akan sulit digunakan dalam penggunaan syntax python di langkah selanjutnya. Pergantian nama kolom dilakukan dengan cara mengubah karakter strip (-) dengan garis bawah (_). Nama-nama kolom yang diubah adalah:
-        1. Book-Title menjadi book_title.
-        2. Book-Author menjadi book_author.
-        3. Year-Of-Publication menjadi year_of_publication.
-        4. User-ID menjadi user_id.
-        5. Book-Rating menjadi book-rating.
+    
+    - Book-Title menjadi book_title.
+
+    - Book-Author menjadi book_author.
+
+    - Year-Of-Publication menjadi year_of_publication.
+
+    - User-ID menjadi user_id.
+
+    - Book-Rating menjadi book-rating.
 - **Memperbaiki nilai.**
 
     Hal ini dilakukan karena beberapa isi kolom data terdapat kesalahan ketik atau nilai abnormal seperti:
@@ -150,84 +156,89 @@ Tahap persiapan data sebagaimana yang telah dijelaskan pada bagian *Solution App
     - Nilai kolom Age pada Users.csv yang memiliki nilai abnormal 0 dan di atas 95 tahun. Hal ini menjadi abnormal karena secara nalar tidak mungkin seseorang yang berumur kurang dari 5 tahun atau lebih dari 95 tahun memberikan penilaian buku. Nilai abnormal kolom pada ini diberlakukan sama dengan teknik sebelumnya yakni imputasi dengan nilai modus karena kolom ini memiliki skewness positif.
         
     ![wrongagevalue](https://user-images.githubusercontent.com/68690376/139520522-7353c295-d5de-415d-9ba7-5e52f016ce68.png)
-
-- **Menghapus kolom yang tidak diperlukan.**
-
-    Kolom atau fitur pada data yang tidak digunakan seperti Image-URL-S, Image-URL-M, Image-URL-L akan dihapus karena pembangunan sistem rekomendasi tidak membutuhkan fitur alamat URL buku.
+    
 - **Menghapus baris yang memiliki nilai kosong.**
 
     Penghapusan baris dengan ketentuan tertentu seperti baris yang tidak memiliki nilai dilakukan setelah perbaikan nilai pada tahap sebelumnya tidak memungkinan untuk dilakukan. Beberapa penghapusan baris dengan ketentuannya dilakukan pada baris berikut:
-        - Baris yang memiliki nilai kosong Book-Author dan Publisher dalam data Books.csv.
-        - Baris yang memiliki nilai 0 pada kolom book_rating dalam Users.csv karena saat ini belum cukup informasi untuk mengolah penilaian implisit.
+    - Baris yang memiliki nilai NaN pada kolom Book-Author dan Publisher dalam data Books.csv.
+    - Baris yang memiliki nilai 0 pada kolom book_rating dalam Users.csv karena saat ini belum cukup informasi untuk mengolah penilaian implisit.
+    - Baris yang memiliki nilai NaN pada kolom Age dalam data Users.csv.
+
+- **Menghapus kolom yang tidak diperlukan.**
+
+    Kolom atau fitur pada data yang tidak digunakan seperti Image-URL-S, Image-URL-M, Image-URL-L pada data Books.csv akan dihapus karena pembangunan sistem rekomendasi tidak membutuhkan fitur alamat URL buku. Selain itu kolom Location pada data Users.csv juga akan dihapus karena tidak memiliki korelasi dalam konteks penelitian ini.
+
 - **Menggabungkan data.**
 
-    Penggabungan data dilakukan untuk mengumpulkan seluruh data berdasarkan fitur user_id dan ISBN. Hasil penggabungan ini adalah sebuah data utama yang perlu dibersihkan kembali pada baris yang memiliki nilai kosong sebelum melanjutkan langkah berikutnya.
+    Penggabungan data dilakukan untuk mengumpulkan seluruh data berdasarkan fitur user_id dan ISBN. Hasil penggabungan ini adalah sebuah data utama yang perlu dibersihkan kembali jika terdapat baris yang memiliki nilai kosong sebelum melanjutkan langkah berikutnya.
 - **Mengelompokkan dan mengurutkan data.**
 
-    Hal ini dilakukan dengan menghimpun data utama yang telah digabung dan diurutkan berdasarkan book_rating agar mengembalikan data utama yang bersifat unik dan urut berdasarkan penilaian buku tertinggi.
+    Hal ini dilakukan dengan menghimpun data utama yang telah digabung berdasarkan book_title dan diurutkan berdasarkan book_rating agar mengembalikan data utama yang bersifat unik dan urut berdasarkan penilaian buku tertinggi.
 - **Mengambil sampel data.**
 
-    Langkah ini diperlukan karena data yang sudah dibersihkan dan diolah memiliki ukuran terlalu besar dan akan menghabiskan banyak sumber daya RAM yang dapat menghasilkan *notebook crash* atau berhentinya proses komputasi pada Google Colab dalam proyek ini. Ukuran sampel yang diambil adalah 10.000 baris pertama dari data utama.
- 
+    Langkah ini diperlukan karena data yang sudah dibersihkan dan diolah memiliki ukuran terlalu besar (109.209 baris) dan akan menghabiskan banyak sumber daya RAM yang dapat menghasilkan *notebook crash* atau berhentinya proses komputasi pada Google Colab dalam proyek ini. Ukuran sampel yang diambil adalah 10.000 baris pertama dari data utama.
+- **Encoding Fitur.**
+
+    *Encoding* fitur atau penyandian fitur diperlukan agar fitur non numerik bisa dipetakan dalam bentuk numerik karena model *machine learning* hanya bisa menerima nilai numerik.
 - **Pembagian dataset.**
-    Pembagian ditentukan dengan ukuran data latih 80% dan data uji 20%. Ini diperlukan agar model yang telah dilatih dapat diujikan seberapa akurat hasil prediksinya terhadap data baru. Dalam dataset ini rasio 80:20 dapat dikatakan masih ideal karena jumlahnya masih ribuan saja (1987 baris). !!!
+    Pembagian ditentukan dengan ukuran data latih 80% dan data uji 20%. Ini diperlukan agar model yang telah dilatih dapat diujikan seberapa akurat hasil prediksinya terhadap data baru. Hasilnya aalah sejumlah 8.000 baris data latih dan 2.000 baris data uji.
 
 ## Modeling
-Tahapan ini membahas mengenai **pembuatan model sistem rekomendasi** untuk menyelesaikan permasalahan dan **menyajikan top-N recommendation sebagai solusi.**
 
-Untuk menjelaskan mengenai bagian ini, Anda dapat mengikuti panduan: 
-- Jelaskan bagaimana Anda melakukan proses modeling dalam proyek. 
-- Sajikan top-N recommendation sebagai output model Anda.
-- Jelaskan pula hasil rekomendasi dari model Anda.
+Seperti yang telah dituliskan dalam *solution statement*, model *machine learning* yang digunakan untuk menyelesaikan permasalahan dalam proyek ini adalah algoritma *Content Based Filtering* dan *Collaborative Filtering*.
 
-(Menyajikan dua solusi rekomendasi dengan algoritma yang berbeda.)
-Seperti yang telah dituliskan dalam *solution statement*, model machine learning yang digunakan untuk menyelesaikan permasalahan dalam proyek ini adalah KNN dan Gradient Boosting.
+**1. Content Based Filtering.** Algoritma ini menghasilkan rekomendasi berdasarkan kemiripan *dataframe* dari matriks cosine similarity yang sebelumnya didapatkan dari matriks TF-IDF. Fitur yang diambil adalah penulis buku dengan asumsi bahwa pembaca buku akan mencari buku dari penulis yang sama. Sebuah matriks baru diperlukan untuk mengambil fitur yang digunakan dalam penelitian yakni book_author atau penulis buku. Fungsi book_recommendation digunakan sebagai fungsi yang melakukan komputasi perhitungan kesamaannya dengan nilai k atau jumlah rekomendasi adalah 5. Contoh hasilnya dari buku yang ditulis Sandra Brown dengan dulu Heaven's Price menghasilkan 4 buku lain dari penulis yang sama.
 
-**1. KNN.** Model KNN proyek ini akan menggunakan library sklearn. Model dilatih dengan data yang telah melewati pra-pemrosesan. Selanjutnya akan dikembangkan model KNN ini menggunakan GridSearchCV untuk mencari hyperparameter terbaik.
+![CBFresult](https://user-images.githubusercontent.com/68690376/139575267-9ca8e281-2384-4476-ae21-f426daf9d7f0.png)
 
-**2. Gradient Boosting.** Model Gradient Boosting ini juga menggunakan library sklearn GradientBoostingClassifier dan dilatih dengan data yang telah melewati pra-pemrosesan.
-Tahapan ini membahas mengenai model machine learning yang digunakan untuk menyelesaikan permasalahan. Seperti model KNN, Gradient Boosting ini juga akan dikembangkan modelnya dengan GridSearchCV untuk mencari hyperparameter terbaik.
+**2. Collaborative Filtering** Model ini menggunakan library Tensorflow Keras untuk mengimpor model RecommenderNet. Model ini perlu dilakukan inisialisasi fungsi sebelum akhirnya dilakukan proses training. Hasil evaluasi model ini menggunakan RMSE atau Root Mean Squared Error yakni evaluasi yang mengukur seberapa jauh jarak prediksi terhadap nilai asli. Model ini akan menampilkan 10 buku rekomendasi berdasarkan referensi buku yang telah diberikan penilai dari *user*. Contoh hasil prediksi model ini dapat dilihat pada gambar berikut:
 
-Hasil pelatihan dan pengujian model dapat dilihat sebagai berikut:
-
-![Hasil Model](../main/images/hasil_model.png "Hasil Model")
-
-Dari hasil seluruh model yang dibuat, model Gradient Boosting yang dikembangkan memiliki nilai terbaik dan oleh karena itu model ini yang akan digunakan pada tahap selanjutnya.
+![CFresult](https://user-images.githubusercontent.com/68690376/139575428-06889638-5260-4e1c-b4ff-38a70af0f210.png)
 
 ## Evaluation
-Bagian ini menjelaskan mengenai metrik evaluasi yang digunakan untuk mengukur kinerja model.  Penjelasannya meliputi (namun tidak terbatas pada) beberapa hal berikut:
+Bagian ini menjelaskan mengenai metrik evaluasi yang digunakan untuk mengukur kinerja model. Penjelasannya meliputi (namun tidak terbatas pada) beberapa hal berikut:
 - Penjelasan mengenai metrik yang digunakan dan bagaimana formulanya
 - Kelebihan dan kekurangan metrik
 - Bagaimana cara menerapkannya ke dalam kode.
 
 (Menjelaskan metrik evaluasi yang digunakan untuk mengukur kinerja model (formula dan cara metrik tersebut bekerja).)
-Sebagai evaluasi, proyek klasifikasi akan menggunakan metrik *accuration*, *precision*, *recall*, dan *F1 score*. Kita juga akan melihat hasil *confusion matrix* dari prediksi model sebelum membahas empat metrik sebelumnya untuk lebih memberikan gambaran hasil evaluasi.
-- *Confusion matrix* adalah matriks yang berisi 4 notasi tp, tn, fp, fn. Notasi tp (true positive) dan tn (true negative) menunjukkan jumlah nilai positif dan negatif yang diprediksi secara tepat. Sedangkan notasi fp (false positive) dan fn (false negative) menunjukkan jumlah nilai positif dan negatif yang diprediksi salah. Kelebihan matriks ini adalah paling sederhana untuk dipahami dan kekurangannya adalah tidak cukup informatif untuk mengukur hasil sehingga perlu diolah kembali [[3]](https://www.academia.edu/download/37219940/5215ijdkp01.pdf).
-![confusion matrix](../main/images/confusion_matrix.png "confusion matrix")
+Sebagai evaluasi, proyek *recommender system* ini akan menggunakan *precision* untuk algoritma *Content Based Filtering* serta evaluasi dengan RMSE untuk *Collaborative Filtering* yang akan dijelaskan sebagai berikut:
 
-- *Accuration* atau akurasi adalah salah satu metriks evaluasi kesalahan yang sering dipakai. Akurasi didapatkan dari persentase prediksi yang benar terhadap total nilai yang ada. Kelebihan metrik ini adalah penilaian yang mudah digunakan, lebih sedikit kerumitan, bisa digunakan dalam multi label atau multi kelas, dan mudah dipahami. Sedangkan kekurangannya adalah keterbatasan dalam proses evaluasi dan proses diskriminasi. Contohnya adalah jika dalam sebuah dataset dengan nilai negatif yang berjumlah 80% dan model yang dibuat memprediksi seluruhnya negatif. Maka hasil akurasinya akan tetap bernilai 80% tanpa mengetahui bahwa ada bias kesalahan prediksi, yakni model selalu memprediksi negatif.
+- *Precision* atau presisi adalah metriks evaluasi untuk mengukur pola positif yang diprediksi dengan benar dari total pola prediksi dalam kelas positif. Kelebihan presisi adalah mampu menilai prediksi model terhadap label data positif. Ini menghasilkan kelemahan presisi yang tidak mampu mengukur hasil label negatif.
 
-  ![accuracy](../main/images/accuracy.png "accuracy")
+  ![precision](https://user-images.githubusercontent.com/68690376/139575828-21a60c1f-2373-4e0c-914b-ad7b81960601.png)
+  
+  Dengan catatan tp adalah *true positive* atau nilai label positif yang diprediksi benar dan fp adalah *false positive* atau nilai label negatif yang diprediksi salah.
+  
+  ![CBFresult](https://user-images.githubusercontent.com/68690376/139575267-9ca8e281-2384-4476-ae21-f426daf9d7f0.png)
+  
+  Hasil presisi dalam contoh sebelumnya bernilai tp = 4 dan fp = 1. Berarti *precision* bernilai:
+  
+  = 4/(4+1)
+  
+  = 4/5
+  
+  = 0.8 atau 80%
+  
+  Nilai ini berarti bernilai baik dan berhasil memberikan rekomendasi buku yang memiliki kemungkinan relevan dengan pembaca buku.
 
-- *Precision* atau presisi adalah metriks evaluasi untuk mengukur pola positif yang diprediksi dengan benar dari total pola prediksi dalam kelas positif. Kelebihan presisi adalah mampu menilai prediksi model terhadap label data positif. Ini menghasilkan presisi tidak mampu mengukur hasil label negatif.
-
-  ![precision](../main/images/precision.png "precision")
-
-- *Recall* adalah metriks evaluasi untuk mengukur pola positif yang diprediksi dengan benar dari total pola prediksi yang benar. Metriks ini adalah nilai yang berlawanan dengan presisi sehingga memiliki keunggulan menghitung bagian negatif dari prediksi label positif dan kekurangannya adalah tidak mampu menghitung prediksi negatif.
-
-  ![recall](../main/images/recall.png "recall")
-
-- *f1-score* adalah metriks evaluasi yang menggunakan nilai presisi dan *recall* untuk mengukur seberapa baik hasil dan seberapa lengkap hasil prediksinya. Kombinasi presisi dan *recall* menjadikan *f1-score* saling melengkapi kekurangan dua evaluasi metriks tersebut namun tidak dapat menghitung hasil prediksi benar pada label negatif.
-
-  ![f1score](../main/images/f1score.png "f1score")
-
-Seluruh evaluasi matriks ini dapat digunakan dengan mudah menggunakan *library* sklearn metrics. Hasilnya dapat dilihat pada gambar berikut:
-
-  ![cfmatrix](../main/images/cfmatrix.png "cfmatrix")
-
-  ![4metriks](../main/images/4metriks.png "4metriks")
-
-
+- *RMSE* (*Root Mean Squared Error*) atau juga disebut RMSD (*Root Mean Squared Deviation*) adalah metriks evaluasi dengan menghitung akar dari jarak selisih antara prediksi dan nilai asli untuk setiap titik. Lebih lengkapnya dapat dilihat pada rumus berikut:
+  ![rmsde](https://user-images.githubusercontent.com/68690376/139576227-25a7733c-b97c-4e55-8bda-78bcb472d59c.png)
+  
+  Dengan keterangan:
+  
+  i = data ke-i
+  
+  x = nilai asli
+  
+  x̂ = nilai prediksi
+  
+  N = jumlah data
+  
+  Keunggulan RMSE adalah lebih sensitif terhadap jenis kesalahan besar sehingga jika nilai yang digunakan kecil maka kinerja mode akan memiliki nilai bagus. Sedangkan kelemahan RMSE adalah tidak mampu menggambarkan kesalahan rata-rata saja dan memiliki implikasi lain yang lebih sulit untuk diurai dan dipahami [[4]](https://medium.com/human-in-a-machine-world/mae-and-rmse-which-metric-is-better-e60ac3bde13d). Hasil dari evaluasi RMSE proyek ini adalah di atas 10% skala data yang digunakan dari nilai target yang telah dilakukan normalisasi. Hal ini menandakan penggunaan penerapan *Collaborative Filtering* belum cukup baik untuk digunakan sebagai sistem rekomendasi. Perhitungan RMSE menggunakan sklearn mean_squared_error dan menghasilkan nilai berikut:
+  
+  !!!
+  
 ## References
 [[1]](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.23.9764&rep=rep1&type=pdf) Swearingen, K. dan Sinha, R., 2001, September. Beyond algorithms: An HCI perspective on recommender systems. In*ACM SIGIR 2001 workshop on recommender systems* (Vol. 13, No. 5-6, pp. 1-11). [http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.23.9764&rep=rep1&type=pdf](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.23.9764&rep=rep1&type=pdf)
 
@@ -235,5 +246,7 @@ Seluruh evaluasi matriks ini dapat digunakan dengan mudah menggunakan *library* 
 
 [[3]](https://www.oecd.org/education/pisa-2018-results-volume-i-5f07c754-en.htm) OECD. (2019). *PISA 2018 results (volume I): what students know and can do.* PISA:
 OECD Publishing. [https://www.oecd.org/education/pisa-2018-results-volume-i-5f07c754-en.htm](https://www.oecd.org/education/pisa-2018-results-volume-i-5f07c754-en.htm)
+
+[[4]](https://medium.com/human-in-a-machine-world/mae-and-rmse-which-metric-is-better-e60ac3bde13d) JJ (2016) .*MAE and RMSE — Which Metric is Better?* Medium. [https://medium.com/human-in-a-machine-world/mae-and-rmse-which-metric-is-better-e60ac3bde13d](https://medium.com/human-in-a-machine-world/mae-and-rmse-which-metric-is-better-e60ac3bde13d)
 
 **---Ini adalah bagian akhir laporan---**
