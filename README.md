@@ -224,7 +224,7 @@ Sebagai evaluasi, proyek *recommender system* ini akan menggunakan *precision* u
   Nilai ini berarti bernilai baik dan berhasil memberikan rekomendasi buku yang memiliki kemungkinan relevan dengan pembaca buku.
 
 - *RMSE* (*Root Mean Squared Error*) atau juga disebut RMSD (*Root Mean Squared Deviation*) adalah metriks evaluasi dengan menghitung akar dari jarak selisih antara prediksi dan nilai asli untuk setiap titik. Lebih lengkapnya dapat dilihat pada rumus berikut:
-- 
+ 
   ![rmsde](https://user-images.githubusercontent.com/68690376/139576227-25a7733c-b97c-4e55-8bda-78bcb472d59c.png)
   
   Dengan keterangan:
