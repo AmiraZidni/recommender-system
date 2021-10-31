@@ -181,6 +181,7 @@ Tahap persiapan data sebagaimana yang telah dijelaskan pada bagian *Solution App
 
     *Encoding* fitur atau penyandian fitur diperlukan agar fitur non numerik bisa dipetakan dalam bentuk numerik karena model *machine learning* hanya bisa menerima nilai numerik.
 - **Pembagian dataset.**
+
     Pembagian ditentukan dengan ukuran data latih 80% dan data uji 20%. Ini diperlukan agar model yang telah dilatih dapat diujikan seberapa akurat hasil prediksinya terhadap data baru. Hasilnya aalah sejumlah 8.000 baris data latih dan 2.000 baris data uji.
 
 ## Modeling
@@ -223,6 +224,7 @@ Sebagai evaluasi, proyek *recommender system* ini akan menggunakan *precision* u
   Nilai ini berarti bernilai baik dan berhasil memberikan rekomendasi buku yang memiliki kemungkinan relevan dengan pembaca buku.
 
 - *RMSE* (*Root Mean Squared Error*) atau juga disebut RMSD (*Root Mean Squared Deviation*) adalah metriks evaluasi dengan menghitung akar dari jarak selisih antara prediksi dan nilai asli untuk setiap titik. Lebih lengkapnya dapat dilihat pada rumus berikut:
+- 
   ![rmsde](https://user-images.githubusercontent.com/68690376/139576227-25a7733c-b97c-4e55-8bda-78bcb472d59c.png)
   
   Dengan keterangan:
@@ -235,9 +237,11 @@ Sebagai evaluasi, proyek *recommender system* ini akan menggunakan *precision* u
   
   N = jumlah data
   
-  Keunggulan RMSE adalah lebih sensitif terhadap jenis kesalahan besar sehingga jika nilai yang digunakan kecil maka kinerja mode akan memiliki nilai bagus. Sedangkan kelemahan RMSE adalah tidak mampu menggambarkan kesalahan rata-rata saja dan memiliki implikasi lain yang lebih sulit untuk diurai dan dipahami [[4]](https://medium.com/human-in-a-machine-world/mae-and-rmse-which-metric-is-better-e60ac3bde13d). Hasil dari evaluasi RMSE proyek ini adalah di atas 10% skala data yang digunakan dari nilai target yang telah dilakukan normalisasi. Hal ini menandakan penggunaan penerapan *Collaborative Filtering* belum cukup baik untuk digunakan sebagai sistem rekomendasi. Perhitungan RMSE menggunakan sklearn mean_squared_error dan menghasilkan nilai berikut:
+  Keunggulan RMSE adalah lebih sensitif terhadap jenis kesalahan besar sehingga jika nilai yang digunakan kecil maka kinerja mode akan memiliki nilai bagus. Sedangkan kelemahan RMSE adalah tidak mampu menggambarkan kesalahan rata-rata saja dan memiliki implikasi lain yang lebih sulit untuk diurai dan dipahami [[4]](https://medium.com/human-in-a-machine-world/mae-and-rmse-which-metric-is-better-e60ac3bde13d). Perhitungan RMSE menggunakan sklearn mean_squared_error dan menghasilkan nilai berikut:
   
-  !!!
+  ![resultrmse](https://user-images.githubusercontent.com/68690376/139577446-471761f9-0296-4a45-afac-aa4afd99a9da.png)
+  
+  Hasil dari evaluasi RMSE proyek ini adalah di atas 10% skala data yang digunakan dari nilai target. Hal ini menandakan penerapan *Collaborative Filtering* dalam proyek ini belum cukup baik untuk digunakan sebagai sistem rekomendasi.
   
 ## References
 [[1]](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.23.9764&rep=rep1&type=pdf) Swearingen, K. dan Sinha, R., 2001, September. Beyond algorithms: An HCI perspective on recommender systems. In*ACM SIGIR 2001 workshop on recommender systems* (Vol. 13, No. 5-6, pp. 1-11). [http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.23.9764&rep=rep1&type=pdf](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.23.9764&rep=rep1&type=pdf)
